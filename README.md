@@ -33,4 +33,5 @@ Notes:
 
 - **Ollama down or slow (>35 s):** the raw Transcript is pasted or saved instead. The Capture file shows `cleanup: failed` and a notification appears.
 - **Title fails:** the file stays `<ts>-untitled.md` with `title_error` in its header, and a notification appears.
+- **`bin/vox.py` fails to start at all** (e.g. `uv` missing): the raw dump is skipped. VoiceInk's own history in `~/Library/Application Support/com.prakashjoshipax.VoiceInk/` still has the Dictation.
 - **After a rebuild:** macOS may ask for Accessibility and Microphone permission again, because local builds are signed only on this machine.

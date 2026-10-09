@@ -119,6 +119,7 @@ def notify(msg):
 
 
 def clean():
+    sys.stdin.read()  # VoiceInk writes the full prompt to stdin synchronously, drain it so large prompts can't block
     system = os.environ.get("VOICEINK_SYSTEM_PROMPT", "")
     user = os.environ.get("VOICEINK_USER_PROMPT", "")
     transcript = extract_transcript(user)

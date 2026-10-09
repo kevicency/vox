@@ -8,7 +8,7 @@
 
 **Insert**: delivering the Clean text into the currently focused text input. Triggered by its own hotkey; hold-to-talk or tap-to-toggle.
 
-**Capture**: delivering the Clean text as a new file in the Capture folder. Triggered by its own hotkey; tap-to-toggle only. Meant for longer brain dumps.
+**Capture**: delivering the Clean text as a new file in the Capture folder. Triggered by its own hotkey, usually tapped to toggle. Meant for longer brain dumps.
 
 **Title**: a short LLM-generated summary of a Capture's content, used in its file name.
 
