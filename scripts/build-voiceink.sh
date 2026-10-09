@@ -6,6 +6,8 @@ DEPS="$HOME/VoiceInk-Dependencies"
 # xcode-select may point at the Command Line Tools, VoiceInk needs full Xcode
 export DEVELOPER_DIR="${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer}"
 command -v cmake >/dev/null || brew install cmake
+# MLX needs the Metal compiler, which Xcode ships as a separate download
+xcrun -f metal >/dev/null 2>&1 || xcodebuild -downloadComponent MetalToolchain
 
 if [[ -d "$SRC/.git" ]]; then
   git -C "$SRC" pull --ff-only
