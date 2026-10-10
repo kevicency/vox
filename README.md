@@ -27,7 +27,19 @@ Notes:
 
 - Every mode must use the Local CLI provider, otherwise its raw Transcript is not saved.
 - The hotkey mode (toggle / hold / hybrid) is global in VoiceInk, so the Capture hotkey is Hybrid too. A tap still toggles.
-- The enhancement prompt is VoiceInk's, so edit it in VoiceInk. Small models tend to translate mixed German/English, so add to the prompt: _"Keep every word in the language it was spoken. Never translate. Output only the cleaned text."_
+- The enhancement prompt is VoiceInk's, so edit it in VoiceInk. Use a custom prompt with **"Use system instructions" off**: VoiceInk's built-in system prompt says "Use the same language as <TRANSCRIPT>", which makes small models translate mixed German/English into one language. This prompt keeps gemma3:4b from translating and removes fillers (about 0.5 s):
+
+  ```
+  You clean up dictated text that mixes German and English.
+  - Keep every word in the language it was spoken. Mixed German/English is intentional. Never translate a single word.
+  - Remove filler words (ähm, äh, öh, um, uh) and stutters.
+  - Fix punctuation and capitalization only.
+  - Output only the cleaned text, nothing else.
+
+  Example:
+  Input: So, ähm, ich hab das Feature, äh, deployed and it works.
+  Output: So, ich hab das Feature deployed and it works.
+  ```
 - VoiceInk silently skips enhancement when a mode has no prompt saved (`AIEnhancementService.isConfigured`): no raw file, and the Capture header says `cleanup: unknown`. The mode form pre-fills the first prompt without saving it, so re-pick the prompt and press Save.
 
 ## Failure behaviour
