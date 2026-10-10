@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Clone or update VoiceInk next to this repo and build it from source into ~/Downloads/VoiceInk.app.
+# Clone or update VoiceInk next to this repo and build it from source into /Applications/VoiceInk.app.
 set -euo pipefail
 SRC="${VOICEINK_SRC:-$HOME/code/VoiceInk}"
 DEPS="$HOME/VoiceInk-Dependencies"
@@ -34,4 +34,9 @@ PY
 fi
 
 make -C "$SRC" local
-echo "Built. Move it into place: mv ~/Downloads/VoiceInk.app /Applications/"
+# `make local` always drops the app in ~/Downloads, swap it into /Applications
+osascript -e 'quit app "VoiceInk"' 2>/dev/null || true
+while pgrep -xq VoiceInk; do sleep 0.2; done
+rm -rf /Applications/VoiceInk.app
+mv ~/Downloads/VoiceInk.app /Applications/
+open /Applications/VoiceInk.app

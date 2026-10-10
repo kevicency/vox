@@ -10,7 +10,7 @@ Local Wispr Flow replacement: [VoiceInk](https://github.com/Beingpax/VoiceInk) (
 
 1. Install the cleanup model: `ollama pull gemma3:4b`
 2. Configure: `cp .env.example .env` (Capture folder, models). `VOX_LLM=anthropic` switches Cleanup and Titles from local Ollama to Claude (default `claude-haiku-5-5`) and needs `ANTHROPIC_API_KEY`. Speech-to-text stays local either way. Requires `uv`, which provides Python and the `anthropic` SDK for `bin/vox.py`.
-3. Build VoiceInk: `scripts/build-voiceink.sh`, then `mv ~/Downloads/VoiceInk.app /Applications/`
+3. Build VoiceInk: `scripts/build-voiceink.sh` (installs to `/Applications` and restarts VoiceInk)
 4. Run the self-check: `bin/vox.py selftest`
 
 ## VoiceInk settings
