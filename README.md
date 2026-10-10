@@ -20,14 +20,15 @@ Local Wispr Flow replacement: [VoiceInk](https://github.com/Beingpax/VoiceInk) (
 | Speech model                             | Whisper large-v3-turbo, language auto-detect                                                          |
 | Recording shortcut                       | your Insert hotkey, mode **Hybrid** (tap toggles, hold talks)                                         |
 | AI provider → Local CLI → custom command | `~/code/vox/bin/vox.py clean`                                                                         |
-| Default mode (**Insert**)                | enhancement on, provider Local CLI, output Paste                                                      |
-| New mode **Capture**                     | own hotkey, enhancement on, provider Local CLI, output Custom command `~/code/vox/bin/vox.py capture` |
+| Default mode (**Insert**)                | enhancement on, **a prompt selected**, Local CLI, output Paste                                                    |
+| New mode **Capture**                     | own hotkey, enhancement on, prompt selected, Local CLI, output Custom command `~/code/vox/bin/vox.py capture` |
 
 Notes:
 
 - Every mode must use the Local CLI provider, otherwise its raw Transcript is not saved.
 - The hotkey mode (toggle / hold / hybrid) is global in VoiceInk, so the Capture hotkey is Hybrid too. A tap still toggles.
 - The enhancement prompt is VoiceInk's, so edit it in VoiceInk. Small models tend to translate mixed German/English, so add to the prompt: _"Keep every word in the language it was spoken. Never translate. Output only the cleaned text."_
+- VoiceInk silently skips enhancement when a mode has no prompt selected (`AIEnhancementService.isConfigured`): no raw file, and the Capture header says `cleanup: unknown`.
 
 ## Failure behaviour
 
